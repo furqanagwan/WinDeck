@@ -1,7 +1,7 @@
 @echo off
 :menu
 cls
-echo Menu:
+echo WinDeck:
 echo 1. Install Steam Deck Drivers
 echo 2. Install Steam
 echo 3. Install WeMod
@@ -22,20 +22,20 @@ goto menu
 
 :install_drivers
 echo Installing Steam Deck Drivers...
-:: Add your driver installation commands here
+call Programs\Drivers\install.bat
 pause
 goto menu
 
 :install_steam
 echo Installing Steam...
-:: Use PowerShell to check for admin privileges and run Steam\install.bat with elevation
+call Programs\Steam\install.bat
 powershell -command "& {Start-Process -filepath 'Steam\install.bat' -verb runas}"
 pause
 goto menu
 
 :install_wemod
 echo Installing WeMod...
-call WeMod\install.bat
+call Programs\WeMod\install.bat
 pause
 goto menu
 

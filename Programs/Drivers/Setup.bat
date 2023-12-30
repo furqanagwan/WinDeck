@@ -1,7 +1,7 @@
 @echo off
 :menu
 cls
-echo Menu:
+echo Steam Deck Drivers:
 echo 1. APU (CPU + GPU)
 echo 2. WI-FI
 echo 3. BT
@@ -18,26 +18,37 @@ if "%choice%"=="4" goto install_sd
 if "%choice%"=="5" goto install_audio
 if "%choice%"=="6" goto exit
 
-echo Invalid choice. Please enter a number from 1 to 4.
+echo Invalid choice. Please enter a number from 1 to 5.
 pause
 goto menu
 
 :install_apu
-echo Installing Steam Deck Drivers...
-:: Add your driver installation commands here
+echo Installing Steam Deck APU driver
+
 pause
 goto menu
 
 :install_wifi
-echo Installing Steam...
-:: Use PowerShell to check for admin privileges and run Steam\install.bat with elevation
-powershell -command "& {Start-Process -filepath 'Steam\install.bat' -verb runas}"
+echo Installing Steam Deck Wi-Fi driver
+call Wi-Fi\Setup.bat
 pause
 goto menu
 
 :install_bt
-echo Installing WeMod...
+echo Installing Steam Deck BT driver
 call WeMod\install.bat
+pause
+goto menu
+
+:install_sd
+echo Installing Steam Deck SD driver
+call WeMod\install.bat
+pause
+goto menu
+
+:install_audio
+echo Installing Steam Deck audio drivers
+call Audio\install.bat
 pause
 goto menu
 
